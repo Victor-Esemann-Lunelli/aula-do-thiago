@@ -79,6 +79,6 @@ public class cliente implements Serializable{
 
     @Override
     public String toString() {
-        return "cliente{" + "id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", telefone=" + telefone + '}';
-    }
+        return  nome;
+    }     
 }

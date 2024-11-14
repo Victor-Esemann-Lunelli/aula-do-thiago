@@ -1,5 +1,6 @@
 
 import controler.ControlerPrincipal;
+import java.text.ParseException;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,7 +12,7 @@ import controler.ControlerPrincipal;
  * @author aluno
  */
 public class Sistema {
-      public static void main(String[] args) {
+      public static void main(String[] args) throws ParseException {
         ControlerPrincipal control = new ControlerPrincipal();
         control.executar();
     }  

@@ -29,6 +29,8 @@ public class Fprincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         micliente = new javax.swing.JMenuItem();
+        miautomovel = new javax.swing.JMenuItem();
+        mirevisao = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,6 +40,12 @@ public class Fprincipal extends javax.swing.JFrame {
 
         micliente.setText("cliente");
         jMenu1.add(micliente);
+
+        miautomovel.setText("automóvel");
+        jMenu1.add(miautomovel);
+
+        mirevisao.setText("revisão");
+        jMenu1.add(mirevisao);
 
         jMenuBar1.add(jMenu1);
 
@@ -69,6 +77,8 @@ public class Fprincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem micliente;
+    public javax.swing.JMenuItem miautomovel;
+    public javax.swing.JMenuItem micliente;
+    public javax.swing.JMenuItem mirevisao;
     // End of variables declaration//GEN-END:variables
 }
