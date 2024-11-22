@@ -92,8 +92,9 @@ public class automovel implements Serializable{
 
     @Override
     public String toString() {
-        return "automovel{" + "id=" + id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", ano=" + ano + ", cliente=" + cliente + '}';
+        return marca+" "+modelo+" "+ano;
     }
-    
+
+   
     
 }

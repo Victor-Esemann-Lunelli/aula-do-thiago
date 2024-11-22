@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -22,5 +23,10 @@ public class DaoAutomovel {
             em.getTransaction().commit();
             return true;
         }
+
+    public List<automovel> listar() {
+        return em.createQuery("select a from automovel a").getResultList();
+        
+    }
     
 }

@@ -34,10 +34,11 @@ public class revisao implements Serializable{
     public revisao() {
     }
 
-    public revisao(Date data, double km, automovel automovel) {
+    public revisao(Date data, double km, automovel automovel, String servicos_realizados) {
         this.data = data;
         this.km = km;
         this.automovel = automovel;
+        this.servicos_realizados = servicos_realizados;
     }
 
     public int getId() {

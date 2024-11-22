@@ -4,8 +4,21 @@
  */
 package controler;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import model.DaoAutomovel;
 import model.DaoRevisao;
+import model.automovel;
+import model.revisao;
 import view.FCadrevisao;
 
 /**
@@ -18,18 +31,74 @@ public class ControlerRevisao {
     private DaoRevisao dao;
     private DaoAutomovel daoa;
 
-    public ControlerRevisao() {
+    public ControlerRevisao() throws ParseException {
         fcadrevisao = new FCadrevisao(null, true);
         dao = new DaoRevisao();
         daoa = new DaoAutomovel();
         inicializarcomponentes();
     }
 
-    public void inicializarcomponentes() {
+    public void inicializarcomponentes() throws ParseException {
         
+      fcadrevisao.eddata.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+        
+        fcadrevisao.btgravar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    GravarRevisao();
+                } catch (ParseException ex) {
+                    Logger.getLogger(ControlerRevisao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        fcadrevisao.btcancelar.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              Cancelar();
+          }
+        });
     }
     
     public void cadastrarrevisao(){
+       CarregarAutomoveis();
        fcadrevisao.setVisible(true);
     }
+    
+    public void CarregarAutomoveis(){
+        fcadrevisao.edauto.removeAllItems();
+        for (automovel a : daoa.listar()) {
+            fcadrevisao.edauto.addItem(a);
+        }
+    }
+    
+    public void GravarRevisao() throws ParseException{
+         
+            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");        
+            Date data = formatador.parse(fcadrevisao.eddata.getText());
+            double km = Double.parseDouble(fcadrevisao.edkm.getText());
+            String servicos = fcadrevisao.edserv.getText();
+            automovel auto = (automovel)fcadrevisao.edauto.getSelectedItem();
+            
+            revisao r = new revisao(data, km, auto, servicos);
+            
+            if (km>10000) {
+                JOptionPane.showMessageDialog(null, "A revisão está atrasada");
+            }
+      
+    }
+    
+    public void limpar(){
+        fcadrevisao.edauto.setSelectedItem("");
+        fcadrevisao.eddata.setText("");
+        fcadrevisao.edkm.setText("");
+        fcadrevisao.edserv.setText("");
+    }
+    
+    public void Cancelar(){
+        limpar();
+        fcadrevisao.setVisible(false);
+    }
+    
 }
