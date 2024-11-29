@@ -18,9 +18,17 @@ public class DaoRevisao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConsertaCarPU");
     EntityManager em = emf.createEntityManager();
     
-    public revisao selecionar(revisao id_automovel){
-        Query consulta = em.createQuery("select r from revisao r where id_automovel=:q order by id desc limit 1");
-        consulta.setParameter("q",id_automovel );
+    public revisao selecionar(automovel automovel){
+        Query consulta = em.createQuery("select r from revisao r where r.automovel=:q order by r.id desc");
+        consulta.setParameter("q",automovel );
+        consulta.setMaxResults(1);
         return (revisao)consulta.getSingleResult();
+    }
+    
+    public boolean inserir(revisao r){
+        em.getTransaction().begin();
+        em.persist(r);
+        em.getTransaction().commit();
+        return true;
     }
 }

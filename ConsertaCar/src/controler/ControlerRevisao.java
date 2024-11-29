@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +25,7 @@ import view.FCadrevisao;
  * @author aluno
  */
 public class ControlerRevisao {
-    
+
     private FCadrevisao fcadrevisao;
     private DaoRevisao dao;
     private DaoAutomovel daoa;
@@ -39,9 +38,9 @@ public class ControlerRevisao {
     }
 
     public void inicializarcomponentes() throws ParseException {
-        
-      fcadrevisao.eddata.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
-        
+
+        fcadrevisao.eddata.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+
         fcadrevisao.btgravar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,53 +51,67 @@ public class ControlerRevisao {
                 }
             }
         });
-        
+
         fcadrevisao.btcancelar.addActionListener(new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e) {
-              Cancelar();
-          }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cancelar();
+            }
         });
     }
-    
-    public void cadastrarrevisao(){
-       CarregarAutomoveis();
-       fcadrevisao.setVisible(true);
+
+    public void cadastrarrevisao() {
+        CarregarAutomoveis();
+        fcadrevisao.setVisible(true);
     }
-    
-    public void CarregarAutomoveis(){
+
+    public void CarregarAutomoveis() {
         fcadrevisao.edauto.removeAllItems();
         for (automovel a : daoa.listar()) {
             fcadrevisao.edauto.addItem(a);
         }
     }
-    
-    public void GravarRevisao() throws ParseException{
-         
-            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");        
-            Date data = formatador.parse(fcadrevisao.eddata.getText());
-            double km = Double.parseDouble(fcadrevisao.edkm.getText());
-            String servicos = fcadrevisao.edserv.getText();
-            automovel auto = (automovel)fcadrevisao.edauto.getSelectedItem();
-            
-            revisao r = new revisao(data, km, auto, servicos);
-            
-            if (km>10000) {
-                JOptionPane.showMessageDialog(null, "A revisão está atrasada");
+
+    public void GravarRevisao() throws ParseException {
+
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        Date data = formatador.parse(fcadrevisao.eddata.getText());
+        double km = Double.parseDouble(fcadrevisao.edkm.getText());
+        String servicos = fcadrevisao.edserv.getText();
+        automovel auto = (automovel) fcadrevisao.edauto.getSelectedItem();
+
+        revisao r = new revisao(data, km, auto, servicos);
+        revisao ultima = dao.selecionar(auto);
+
+        long dataatual = r.getData().getTime() / 86400000;
+        long dataultima = ultima.getData().getTime() / 86400000;
+
+        if (r.getKm() - ultima.getKm() > 10000) {
+            JOptionPane.showMessageDialog(null, "A revisão está atrasada por quilometragem");
+        }
+
+        if (dataatual - dataultima > 365) {
+            JOptionPane.showMessageDialog(null, "A revisão está atrasada por tempo");
+        }
+        
+        if (dao.inserir(r)) {
+                JOptionPane.showMessageDialog(null, "Gravado!");
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO!");
             }
-      
+
     }
-    
-    public void limpar(){
+
+    public void limpar() {
         fcadrevisao.edauto.setSelectedItem("");
         fcadrevisao.eddata.setText("");
         fcadrevisao.edkm.setText("");
         fcadrevisao.edserv.setText("");
     }
-    
-    public void Cancelar(){
+
+    public void Cancelar() {
         limpar();
         fcadrevisao.setVisible(false);
     }
-    
+
 }
