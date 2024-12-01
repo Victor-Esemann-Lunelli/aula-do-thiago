@@ -136,7 +136,7 @@ public class Fprincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
+    public javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -152,11 +152,11 @@ public class Fprincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JMenuItem miautomoveis;
+    public javax.swing.JMenuItem miautomoveis;
     public javax.swing.JMenuItem miautomovel;
     public javax.swing.JMenuItem micliente;
-    private javax.swing.JMenuItem miclientes;
+    public javax.swing.JMenuItem miclientes;
     public javax.swing.JMenuItem mirevisao;
-    private javax.swing.JMenuItem mirevisoes;
+    public javax.swing.JMenuItem mirevisoes;
     // End of variables declaration//GEN-END:variables
 }

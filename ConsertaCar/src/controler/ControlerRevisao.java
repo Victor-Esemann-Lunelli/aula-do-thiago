@@ -19,6 +19,9 @@ import model.DaoRevisao;
 import model.automovel;
 import model.revisao;
 import view.FCadrevisao;
+import view.FConscliente;
+import view.Fconsrevisao;
+import view.modelrevisao;
 
 /**
  *
@@ -27,17 +30,24 @@ import view.FCadrevisao;
 public class ControlerRevisao {
 
     private FCadrevisao fcadrevisao;
+    private FConscliente fconscliente;
+    private Fconsrevisao fconsrevisao;
+    private modelrevisao modelrevisao;
     private DaoRevisao dao;
     private DaoAutomovel daoa;
 
     public ControlerRevisao() throws ParseException {
         fcadrevisao = new FCadrevisao(null, true);
+        fconsrevisao = new Fconsrevisao(null, true);
+        modelrevisao = new modelrevisao();
         dao = new DaoRevisao();
         daoa = new DaoAutomovel();
         inicializarcomponentes();
     }
 
     public void inicializarcomponentes() throws ParseException {
+        
+        fconsrevisao.TBrevisao.setModel(modelrevisao);
 
         fcadrevisao.eddata.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 
@@ -58,6 +68,8 @@ public class ControlerRevisao {
                 Cancelar();
             }
         });
+        
+        
     }
 
     public void cadastrarrevisao() {
@@ -71,6 +83,19 @@ public class ControlerRevisao {
             fcadrevisao.edauto.addItem(a);
         }
     }
+    
+    public void Consultarrevisao(){
+        CarregarRevioes();
+        fconsrevisao.setVisible(true);
+    }
+
+    public void CarregarRevioes() {
+        modelrevisao.limpar();
+        for (revisao r : dao.listar()) {
+            modelrevisao.addrevisao(r);
+        }
+    }
+    
 
     public void GravarRevisao() throws ParseException {
 
@@ -83,6 +108,8 @@ public class ControlerRevisao {
         revisao r = new revisao(data, km, auto, servicos);
         revisao ultima = dao.selecionar(auto);
 
+        if(ultima != null){
+        
         long dataatual = r.getData().getTime() / 86400000;
         long dataultima = ultima.getData().getTime() / 86400000;
 
@@ -96,10 +123,18 @@ public class ControlerRevisao {
         
         if (dao.inserir(r)) {
                 JOptionPane.showMessageDialog(null, "Gravado!");
+                limpar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERRO!");
             }
-
+        }else{
+            if (dao.inserir(r)) {
+                JOptionPane.showMessageDialog(null, "Gravado!");
+                limpar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO!");
+            }
+        }
     }
 
     public void limpar() {

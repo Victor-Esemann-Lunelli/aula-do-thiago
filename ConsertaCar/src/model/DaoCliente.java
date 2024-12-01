@@ -15,18 +15,33 @@ import javax.persistence.Persistence;
  */
 public class DaoCliente {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConsertaCarPU");
-        EntityManager em = emf.createEntityManager();
-        
-        public boolean inserir(cliente c){
-            em.getTransaction().begin();
-            em.persist(c);
-            em.getTransaction().commit();
-            return true;
-        }
-        
-        public List<cliente> listar(){
-            return em.createQuery("select c from cliente c").getResultList();
-        }
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConsertaCarPU");
+    EntityManager em = emf.createEntityManager();
+
+    public boolean inserir(cliente c) {
+        em.getTransaction().begin();
+        em.persist(c);
+        em.getTransaction().commit();
+        return true;
+    }
+
+    public boolean editar(cliente c) {
+        em.getTransaction().begin();
+        em.merge(c);
+        em.getTransaction().commit();
+        return true;
+    }
     
+        public boolean excluir(cliente c){
+        em.getTransaction().begin();
+        em.remove(c);
+        em.getTransaction().commit();
+        return true;
+        
+    }
+
+    public List<cliente> listar() {
+        return em.createQuery("select c from cliente c").getResultList();
+    }
+
 }

@@ -73,6 +73,14 @@ public class revisao implements Serializable{
         this.automovel = automovel;
     }
 
+    public String getServicos_realizados() {
+        return servicos_realizados;
+    }
+
+    public void setServicos_realizados(String servicos_realizados) {
+        this.servicos_realizados = servicos_realizados;
+    }
+    
     @Override
     public String toString() {
         return "revisao{" + "id=" + id + ", data=" + data + ", km=" + km + ", id_automovel=" + automovel + '}';

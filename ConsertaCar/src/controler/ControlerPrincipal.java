@@ -14,6 +14,7 @@ import view.Fprincipal;
  * @author aluno
  */
 public class ControlerPrincipal {
+
     private Fprincipal fprincipal;
     private ControlerCliente controlcliente;
     private ControlerAutomovel controlauto;
@@ -26,12 +27,12 @@ public class ControlerPrincipal {
         controlrevisao = new ControlerRevisao();
         inicializarComponentes();
     }
-    
-    public void executar(){
+
+    public void executar() {
         fprincipal.setVisible(true);
     }
-    
-    public void inicializarComponentes(){
+
+    public void inicializarComponentes() {
         fprincipal.micliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,18 +51,48 @@ public class ControlerPrincipal {
                 abrirtelacadrevisao();
             }
         });
+        fprincipal.miclientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirtelaconscliente();
+            }
+        });
+        fprincipal.miautomoveis.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirtelaconsautomovel();
+            }
+        });
+        fprincipal.mirevisoes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirtelaconsrevisao();
+            }
+        });
     }
-    
-    public void abrirtelacadcliente(){
+
+    public void abrirtelacadcliente() {
         controlcliente.cadastrarcliente();
     }
-    
-    public void abrirtelacadautomovel(){
+
+    public void abrirtelacadautomovel() {
         controlauto.cadastrarauto();
     }
-    
-    public void abrirtelacadrevisao(){
+
+    public void abrirtelacadrevisao() {
         controlrevisao.cadastrarrevisao();
     }
-  
+
+    public void abrirtelaconscliente() {
+        controlcliente.ConsultarCliente();
+    }
+    
+    public void abrirtelaconsautomovel(){
+        controlauto.ConsultarAutomoveis();
+    }
+    
+    public void abrirtelaconsrevisao(){
+        controlrevisao.Consultarrevisao();
+    }
+
 }

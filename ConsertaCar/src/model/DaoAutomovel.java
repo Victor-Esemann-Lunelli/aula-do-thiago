@@ -23,6 +23,20 @@ public class DaoAutomovel {
             em.getTransaction().commit();
             return true;
         }
+        
+        public boolean editar(automovel a){
+            em.getTransaction().begin();
+            em.merge(a);
+            em.getTransaction().commit();
+            return true;
+        }
+        
+        public boolean excluir(automovel a){
+            em.getTransaction().begin();
+            em.remove(a);
+            em.getTransaction().commit();
+            return true;   
+        }
 
     public List<automovel> listar() {
         return em.createQuery("select a from automovel a").getResultList();
