@@ -24,7 +24,7 @@ public class modelautomovel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
     
     @Override
@@ -41,6 +41,9 @@ public class modelautomovel extends AbstractTableModel{
             }
             case 3 -> {
                 return "modelo";
+            }
+            case 4 -> {
+                return "cliente";
             }
         }
         return "";
@@ -60,6 +63,9 @@ public class modelautomovel extends AbstractTableModel{
          }
          case 3 ->{
              return lista.get(rowIndex).getModelo();
+         }
+         case 4 ->{
+             return lista.get(rowIndex).getCliente();
          }
      }
      return "";

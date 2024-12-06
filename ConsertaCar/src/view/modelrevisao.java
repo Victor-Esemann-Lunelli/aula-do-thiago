@@ -24,7 +24,7 @@ public class modelrevisao extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
 
     @Override
@@ -34,15 +34,18 @@ public class modelrevisao extends AbstractTableModel{
                 return "id";
             }
             case 1 -> {
-                return "data";
+                return "placa";
             }
             case 2 -> {
-                return "km";
+                return "data";
             }
             case 3 -> {
+                return "km";
+            }
+            case 4 -> {
                 return "serviços realizados";
             }
-            case 4 ->{
+            case 5 ->{
                 return "id_automóvel";
             }
         }
@@ -56,15 +59,18 @@ public class modelrevisao extends AbstractTableModel{
              return lista.get(rowIndex).getId();
          }
          case 1 ->{
-             return lista.get(rowIndex).getData();
+             return lista.get(rowIndex).getId_automovel().getPlaca();
          }
          case 2 ->{
-             return lista.get(rowIndex).getKm();
+             return lista.get(rowIndex).getData();
          }
          case 3 ->{
-             return lista.get(rowIndex).getServicos_realizados();
+             return lista.get(rowIndex).getKm();
          }
          case 4 ->{
+             return lista.get(rowIndex).getServicos_realizados();
+         }
+         case 5  ->{
              return lista.get(rowIndex).getId_automovel();
          }
      }
