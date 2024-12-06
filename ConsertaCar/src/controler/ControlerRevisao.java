@@ -155,7 +155,6 @@ public class ControlerRevisao {
         fcadrevisao.edauto.setSelectedItem("");
         fcadrevisao.eddata.setText("");
         fcadrevisao.edkm.setText("");
-        fconsrevisao.Tfplaca.setText("");
         fcadrevisao.edserv.setText("");
     }
 
