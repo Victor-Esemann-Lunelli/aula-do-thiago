@@ -69,6 +69,13 @@ public class ControlerRevisao {
             }
         });
         
+        fconsrevisao.btpesquisar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              carregarPLaca();
+            }
+        });
+        
         
     }
 
@@ -92,6 +99,13 @@ public class ControlerRevisao {
     public void CarregarRevioes() {
         modelrevisao.limpar();
         for (revisao r : dao.listar()) {
+            modelrevisao.addrevisao(r);
+        }
+    }
+    
+      public void carregarPLaca(){
+        modelrevisao.limpar();
+        for (revisao r : dao.listarplaca(fconsrevisao.Tfplaca.getText())) {
             modelrevisao.addrevisao(r);
         }
     }
@@ -141,6 +155,7 @@ public class ControlerRevisao {
         fcadrevisao.edauto.setSelectedItem("");
         fcadrevisao.eddata.setText("");
         fcadrevisao.edkm.setText("");
+        fconsrevisao.Tfplaca.setText("");
         fcadrevisao.edserv.setText("");
     }
 

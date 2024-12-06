@@ -78,6 +78,9 @@ public class modelrevisao extends AbstractTableModel{
     
    
     public void limpar(){
+        if(!lista.isEmpty()){
+        fireTableRowsDeleted(0, lista.size()-1);
+        }
         lista.clear();
     }
     

@@ -36,6 +36,12 @@ public class DaoRevisao {
         return consulta.getResultList();
     }
     
+    public List<revisao>listarplaca(String placa){
+        Query consulta = em.createQuery("select r from revisao r where r.automovel.placa=:q");
+        consulta.setParameter("q", placa);
+        return consulta.getResultList();
+    }
+    
     public boolean inserir(revisao r){
         em.getTransaction().begin();
         em.persist(r);
