@@ -24,7 +24,7 @@ public class modelcliente extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
 
    @Override
@@ -34,6 +34,9 @@ public class modelcliente extends AbstractTableModel{
                 return "id";
             }
             case 1 -> {
+                return "cpf";
+            }
+            case 2 -> {
                 return "nome";
             }
         }
@@ -47,6 +50,9 @@ public class modelcliente extends AbstractTableModel{
              return lista.get(rowIndex).getId();
          }
          case 1 ->{
+             return lista.get(rowIndex).getCpf();
+         }
+         case 2 ->{
              return lista.get(rowIndex).getNome();
          }
      }

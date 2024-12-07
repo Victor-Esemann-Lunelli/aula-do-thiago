@@ -76,7 +76,19 @@ public class ControlerRevisao {
             }
         });
         
+        fconsrevisao.btlimpar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LimparPesquisa();
+            }
+        });
         
+        fconsrevisao.btcancelarR.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cancelar();
+            }
+        });
     }
 
     public void cadastrarrevisao() {
@@ -157,9 +169,16 @@ public class ControlerRevisao {
         fcadrevisao.edkm.setText("");
         fcadrevisao.edserv.setText("");
     }
+    
+    public void LimparPesquisa(){
+        fconsrevisao.Tfplaca.setText("");
+        CarregarRevioes();
+    }
 
     public void Cancelar() {
         limpar();
+        LimparPesquisa();
+        fconsrevisao.setVisible(false);
         fcadrevisao.setVisible(false);
     }
 
