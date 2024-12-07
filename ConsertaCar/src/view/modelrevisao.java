@@ -46,7 +46,7 @@ public class modelrevisao extends AbstractTableModel{
                 return "serviços realizados";
             }
             case 5 ->{
-                return "id_automóvel";
+                return "automóvel";
             }
         }
         return "";
