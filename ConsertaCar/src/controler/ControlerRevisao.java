@@ -124,6 +124,15 @@ public class ControlerRevisao {
     
 
     public void GravarRevisao() throws ParseException {
+        
+        if (fcadrevisao.eddata.getText().isEmpty() || 
+        fcadrevisao.edkm.getText().isEmpty() || 
+        fcadrevisao.edserv.getText().isEmpty() || 
+        fcadrevisao.edauto.getSelectedItem() == null) {
+        
+        JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
+        return; 
+    }
 
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
         Date data = formatador.parse(fcadrevisao.eddata.getText());

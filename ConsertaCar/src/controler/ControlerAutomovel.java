@@ -14,7 +14,6 @@ import model.cliente;
 import view.FCadautomovel;
 import view.FConsautomovel;
 import view.modelautomovel;
-import view.modelcliente;
 
 /**
  *
@@ -82,6 +81,17 @@ public class ControlerAutomovel {
     }
 
     public void GravarAutomovel() {
+        
+        if(fcadauto.edano.getText().isEmpty() ||
+           fcadauto.edmarca.getText().isEmpty() ||
+           fcadauto.edmodelo.getText().isEmpty() ||
+           fcadauto.edplaca.getText().isEmpty() ||
+           fcadauto.edcliente.getSelectedItem() == null
+           ){
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
+            return;
+        }
+        
         if (automovelselecionado == null) {
             String placa = fcadauto.edplaca.getText();
             String marca = fcadauto.edmarca.getText();

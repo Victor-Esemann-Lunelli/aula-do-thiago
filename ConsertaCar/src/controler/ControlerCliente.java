@@ -133,6 +133,16 @@ public class ControlerCliente {
     }
 
     public void GravarCliente() throws ParseException {
+        
+        if (fcadcliente.ednome.getText().isEmpty() || 
+        fcadcliente.edcpf.getText().isEmpty() || 
+        fcadcliente.eddatanasc.getText().isEmpty() || 
+        fcadcliente.edtelefone.getText().isEmpty()) {
+        
+        JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
+        return;
+    }
+        
         if (clienteselecionado == null) {
             String nome = fcadcliente.ednome.getText();
             String cpf = fcadcliente.edcpf.getText();
