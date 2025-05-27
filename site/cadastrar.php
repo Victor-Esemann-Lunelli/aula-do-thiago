@@ -4,7 +4,9 @@
     $cep = $_POST["cep"];
 
     echo("seja bem-vindo, $nome!");
-    echo("seu cpf, $cpf");
-    echo("seu cep, $cep");
+    echo ("<br>");
+    echo("seu cpf é: $cpf");
+    echo ("<br>");
+    echo("seu cep é: $cep");
 
 ?>

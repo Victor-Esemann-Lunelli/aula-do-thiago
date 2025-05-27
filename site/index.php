@@ -15,7 +15,7 @@ echo "bom dia";
 }else{
     echo "boa noite";
 }
-echo ("<br> Apremdemdo repetição <br>");
+echo ("<br> Aprendemdo repetição <br>");
 
 for($i = 1; $i<=5; $i++){
 echo "numero: $i <br>";
